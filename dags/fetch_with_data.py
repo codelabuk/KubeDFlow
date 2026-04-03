@@ -6,7 +6,7 @@ from airflow.providers.standard.operators.python import PythonOperator
 import requests
 import pandas as pd
 
-def fetch_with_data(**kwargs):
+def get_data(**kwargs):
     url = 'https://raw.githubusercontent.com/codelabuk/KubeDFlow/refs/heads/master/uploads/new-output.csv'
     response = requests.get(url)
 
@@ -42,14 +42,14 @@ default_args = {
 
 
 dag = DAG(
-    'fetch_with_data',
+    'fetch_and_preview',
     default_args = default_args,
     schedule= timedelta(days=1),
 )
 
 get_data_from_url = PythonOperator(
     task_id='get_data',
-    python_callable=fetch_with_data,
+    python_callable=get_data,
     dag=dag
 )
 
