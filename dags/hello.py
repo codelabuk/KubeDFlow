@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 
-import airflow
 from airflow import DAG
 from airflow.providers.standard.operators.bash import BashOperator
 
@@ -19,13 +18,13 @@ dag = DAG(
 )
 
 t1 = BashOperator(
-    task_id='hello world',
+    task_id='hello_world',
     bash_command='echo "hello world"',
     dag=dag
 )
 
 t2= BashOperator(
-    task_id='hello codelabuk',
+    task_id='hello_codelabuk',
     bash_command='echo "hello codelabuk"',
     dag=dag
 )
