@@ -3,10 +3,10 @@ from datetime import timedelta, datetime
 
 from airflow import DAG
 from airflow.providers.standard.operators.python import PythonOperator
-import requests
-import pandas as pd
 
 def get_data(**kwargs):
+    import requests
+    import pandas as pd
     url = 'https://raw.githubusercontent.com/codelabuk/KubeDFlow/refs/heads/master/uploads/new-output.csv'
     response = requests.get(url)
 
@@ -19,6 +19,7 @@ def get_data(**kwargs):
 
 
 def preview_data(**kwargs):
+    import pandas as pd
     output_data = kwargs['ti'].xcom_pull(key='data', task_ids='get_data')
     print(output_data)
     if output_data:
