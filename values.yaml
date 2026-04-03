@@ -3,3 +3,13 @@ webserverSecretKey: eWZoQ1k1eVh3TjlucVE2UWZyRUFPaHFUU0FCSE80d0s=
 executor: "KubernetesExecutor"
 
 dags:
+  gitSync:
+    enabled: true
+    repo: https://github.com/codelabuk/KubeDFlow.git
+    branch: master
+    rev: HEAD
+    depth: 1
+    maxFailures: 3
+    subPath: "dags"
+    wait: 60
+
