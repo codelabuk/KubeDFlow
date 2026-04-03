@@ -2,7 +2,6 @@ import json
 from datetime import timedelta, datetime
 
 from airflow import DAG
-from airflow.providers.standard.operators.bash import BashOperator
 from airflow.providers.standard.operators.python import PythonOperator
 import requests
 import pandas as pd
@@ -29,7 +28,7 @@ def preview_data(**kwargs):
 
     df = pd.DataFrame(output_data)
     df['Total'] = df['Price'] * df['Quantity']
-    df = (df.groupby('Category',False)
+    df = (df.groupby('Category',as_index=False)
           .agg({'Quantity': 'sum', 'Total': 'sum'}))
     df = df.sort_values(by='Total', ascending=False)
     print(df[['Category', 'Total']].head(20))

@@ -11,5 +11,5 @@ dags:
     depth: 1
     maxFailures: 3
     subPath: "dags"
-    wait: 60
+    wait: 20
 
